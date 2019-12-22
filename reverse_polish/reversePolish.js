@@ -1,0 +1,49 @@
+/*
+function reversePolish 
+gets a string with a reverse Polish notation
+reverse Polish must be a string, operands divided by comma
+returns the result of the expression
+*/
+function reversePolish(str) {
+	if(!str) return 0
+	const dualOperation = new Set(['+', '-', '/', '*'])
+	
+	let arr = str.split(",")
+	let stack = []
+
+	for(let i = 0, len = arr.length; i < len; i++){
+		let curr = +arr[i] || arr[i]
+		
+		if(typeof curr == 'number'){
+			stack.push(curr)
+			continue
+		}
+
+		if(dualOperation.has(curr) && (stack.length > 1)){
+			let n2 = stack.pop()
+			let n1 = stack.pop()
+
+			stack.push(calc(n1, n2, curr))
+			continue
+		}
+
+		return "Error"
+	}
+
+	function calc(num1, num2, operator){
+		switch(operator){
+			case '+':
+				return num1 + num2
+			case "-":
+				return num1 - num2
+			case '/':
+				return num1 / num2
+			case "*": 
+				return num1 * num2
+		}
+	}
+
+	return stack.length !== 1 ? 'Error' : stack[0]
+}
+
+module.exports = reversePolish
