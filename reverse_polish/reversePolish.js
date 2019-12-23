@@ -13,7 +13,7 @@ function reversePolish(str) {
 	let stack = []
 
 	for(let i = 0, len = arr.length; i < len; i++){
-		let curr = +arr[i] || arr[i]
+		let curr = +arr[i] || arr[i].trim()
 		
 		if(typeof curr == 'number'){
 			stack.push(curr)

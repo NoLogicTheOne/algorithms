@@ -6,28 +6,28 @@ test('function was success imported', () => {
 
 describe('work sample', () => {
 	test("+", () => {
-		expect(reversePolish("2,3,+")).toBe(5)
+		expect(reversePolish("2, 3, +")).toBe(5)
 	})
 	test("-", () => {
-		expect(reversePolish("2,3,-")).toBe(-1)
+		expect(reversePolish("2, 3, -")).toBe(-1)
 	})
 	test("/", () => {
-		expect(reversePolish("6,3,/")).toBe(2)
+		expect(reversePolish("6, 3, /")).toBe(2)
 	})
 	test("*", () => {
-		expect(reversePolish("2,3,*")).toBe(6)
+		expect(reversePolish("2, 3, *")).toBe(6)
 	})
 })
 
 describe('work errors', () => {
 	test("another sym", () => {
-		expect(reversePolish('12,3,4,+,d')).toBe('Error')
+		expect(reversePolish('12, 3, 4, +, d')).toBe('Error')
 	})
 	test("incorrect send", () => {
-		expect(reversePolish('12,3,4,+')).toBe('Error')
+		expect(reversePolish('12, 3, 4, +')).toBe('Error')
 	})
 	test("someNumbers with operator at start", () => {
-		expect(reversePolish("6,/,3,5,*")).toBe("Error")
+		expect(reversePolish("6, /, 3, 5, *")).toBe("Error")
 	})
 })
 
@@ -36,9 +36,18 @@ describe('work difficult', () => {
 		expect(reversePolish("")).toBe(0)
 	})
 	test("someNumbers with operator in the end", () => {
-		expect(reversePolish("5,2,3,-,*")).toBe(-5)
+		expect(reversePolish("5, 2, 3, -, *")).toBe(-5)
 	})
 	test("someNumbers with operator in the middle", () => {
-		expect(reversePolish("6,3,/,5,*")).toBe(10)
+		expect(reversePolish("6, 3, /, 5, *")).toBe(10)
+	})
+})
+
+describe("work with single operations", () => {
+	test("single sample", () => {
+		expect(reversePolish("4, sqrt")).toBe(2)
+	})
+	test("single complex", () => {
+		expect(reversePolish("4, 4, *, sqrt")).toBe(4)
 	})
 })
