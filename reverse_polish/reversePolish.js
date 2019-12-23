@@ -6,8 +6,9 @@ returns the result of the expression
 */
 function reversePolish(str) {
 	if(!str) return 0
-	const dualOperation = new Set(['+', '-', '/', '*'])
-	
+	const dualOperations = new Set(['+', '-', '/', '*'])
+	const singleOperations = new Set(["sqrt"])
+
 	let arr = str.split(",")
 	let stack = []
 
@@ -19,11 +20,18 @@ function reversePolish(str) {
 			continue
 		}
 
-		if(dualOperation.has(curr) && (stack.length > 1)){
+		if(dualOperations.has(curr) && (stack.length > 1)){
 			let n2 = stack.pop()
 			let n1 = stack.pop()
 
 			stack.push(calc(n1, n2, curr))
+			continue
+		}
+
+		if(singleOperations.has(curr) && (stack.length > 0)){
+			let n1 = stack.pop()
+
+			stack.push(calc(n1, null, curr))
 			continue
 		}
 
@@ -40,6 +48,8 @@ function reversePolish(str) {
 				return num1 / num2
 			case "*": 
 				return num1 * num2
+			case "sqrt":
+				return Math.sqrt(num1)
 		}
 	}
 
