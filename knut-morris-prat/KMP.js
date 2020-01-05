@@ -23,7 +23,35 @@ const prefixAll = str => {
 }
 
 const KMP = (str, strCompare) => {
+	const prefix = prefixAll(strCompare)
 
+	let i = 0, //adress for str 
+		j = 0, //adress for strCompare
+		len = str.length
+
+	while(i < len){
+		// 1 stage - install
+		// we can use includes(str[j]), but it a cheat=) 
+		// as we can use str.includes(strCompare)
+		while(str[i] !== strCompare[j]){
+			i++
+			j = 0 // so important!
+			if(i == len) return false
+		}
+		//2 stage - first compare
+		while(str[i] == strCompare[j]){
+			i++
+			j++
+			if(j == strCompare.length) {
+				return true
+			}
+			if(i == len) return false
+		}
+		//3 stage - shift
+		j = prefix[j-1]
+	}
+
+	return false
 }
 
 module.exports = {
