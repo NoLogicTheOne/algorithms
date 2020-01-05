@@ -1,6 +1,16 @@
 # Algorithms
 base algorithm i should know for success in progamming
 
+### Knut-Morris-Pratt
+
+> Knuth–Morris–Pratt string-searching algorithm (or KMP algorithm) searches for occurrences of a "word" W within a main "text string" S by employing the observation that when a mismatch occurs, the word itself embodies sufficient information to determine where the next match could begin, thus bypassing re-examination of previously matched characters.
+> - [Link to Wiki](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm) 
+
+Also contains a prefix function && tests to it
+
+In fact, in JS the algorithm does not make sense, because of the String.prototype.includes
+But no one knows when I'll have to change my language
+
 ### Reverse Polish
 directory name: reverse_polish
 
