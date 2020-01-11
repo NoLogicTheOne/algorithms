@@ -1,5 +1,6 @@
 function mergeSort(arr, compareFunction = (a, b) => a > b) {
 	let stage = 1
+	let stageLevel = 1
 	let len = arr.length
 	let temp = [...arr]
 
@@ -25,7 +26,7 @@ function mergeSort(arr, compareFunction = (a, b) => a > b) {
 	}	
 
 	const fillPart = arr => {
-		return arr.slice(0, 2**(stage-1)).filter(c => c != undefined)
+		return arr.slice(0, stageLevel).filter(c => c != undefined)
 	}
 
 	const divideAndMergeArrs = (arr) => {
@@ -35,21 +36,21 @@ function mergeSort(arr, compareFunction = (a, b) => a > b) {
 		while(res.length < len){
 
 			let arr1 = fillPart(temp)
-			temp = temp.slice(2**(stage-1))
+			temp = temp.slice(stageLevel)
 			
 			let arr2 = fillPart(temp)
-			temp = temp.slice(2**(stage-1))
+			temp = temp.slice(stageLevel)
 
 			res.push(...mergeSortedArrs(arr1, arr2))
-			// console.log({stage,res,arr1,arr2})
 		}
 
 		return res
 	}
 
-	while((2**(stage-1)) < len){
+	while(stageLevel < len){
 		temp = divideAndMergeArrs(temp)
 		stage++
+		stageLevel *= 2
 	}
 	
 	return temp
