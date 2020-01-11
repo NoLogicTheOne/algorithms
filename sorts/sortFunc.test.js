@@ -11,10 +11,22 @@ describe("correct loaded", () => {
 	})
 })
 
+describe("sample tests", () => {
+	it("right order", ()=> {
+		expect(sortFunc([1,2])).toEqual([1,2])
+	})
+	it("desc order", ()=> {
+		expect(sortFunc([2,1])).toEqual([1,2])
+	})
+	it("odd count", ()=> {
+		expect(sortFunc([-47,6,29,-55,-6])).toEqual([-55,-47,-6,6,29])
+	})
+})
+
 describe("random tests", () => {
 	const random = (min, max) => ((Math.random() * (max - min)) | 0) + min
 	const getArrOfValues = () => {
-		let arr = [], i = 10
+		let arr = [], i = random(50,70)
 		while(i--){
 			arr.push(random(-100, 100))
 		}
