@@ -1,6 +1,7 @@
 // this test will be used for all sorted functions
 // you can test any functon by change required file
-const sortFunc = require("./MergeSort.js")
+// const sortFunc = require("./MergeSort.js")
+const sortFunc = require("./BubbleSort.js")
 
 describe("correct loaded", () => {
 	it("load func", () => {
