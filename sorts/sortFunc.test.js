@@ -2,9 +2,10 @@
 // you can test any functon by change required file
 
 // const sortFunc = (arr, compare = (a, b) =>  a - b) => arr.sort(compare)
-// const sortFunc = require("./MergeSort.js")
+const sortFunc = require("./MergeSort.js")
 // const sortFunc = require("./BubbleSort.js")
-const sortFunc = require("./SelectionSort.js")
+// const sortFunc = require("./SelectionSort.js")
+// const sortFunc = require("./QwickSort.js")
 
 describe("correct loaded", () => {
 	it("load func", () => {
@@ -30,22 +31,22 @@ describe("sample tests", () => {
 	})
 })
 
-describe("random tests", () => {
-	const random = (min, max) => ((Math.random() * (max - min)) | 0) + min
-	const getArrOfValues = () => {
-		let arr = [], i = random(50, 100)
-		while(i--){
-			arr.push(random(-10000, 10000))
-		}
-		return arr
-	}
+// describe("random tests", () => {
+// 	const random = (min, max) => ((Math.random() * (max - min)) | 0) + min
+// 	const getArrOfValues = () => {
+// 		let arr = [], i = random(50, 100)
+// 		while(i--){
+// 			arr.push(random(-10000, 10000))
+// 		}
+// 		return arr
+// 	}
 	
-	for(let i = 0; i < 50; i++){
-		let arr1 = getArrOfValues()
-		let arr2 = [...arr1].sort((a, b) =>  a - b)
-		it("random test " + arr1, () => {
-			expect(sortFunc(arr1)).toEqual(arr2)
-		})
-	}
-})
+// 	for(let i = 0; i < 50; i++){
+// 		let arr1 = getArrOfValues()
+// 		let arr2 = [...arr1].sort((a, b) =>  a - b)
+// 		it("random test " + arr1, () => {
+// 			expect(sortFunc(arr1)).toEqual(arr2)
+// 		})
+// 	}
+// })
 
