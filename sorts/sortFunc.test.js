@@ -2,10 +2,10 @@
 // you can test any functon by change required file
 
 // const sortFunc = (arr, compare = (a, b) =>  a - b) => arr.sort(compare)
-const sortFunc = require("./MergeSort.js")
+// const sortFunc = require("./MergeSort.js")
 // const sortFunc = require("./BubbleSort.js")
 // const sortFunc = require("./SelectionSort.js")
-// const sortFunc = require("./QwickSort.js")
+const sortFunc = require("./QwickSort.js")
 
 describe("correct loaded", () => {
 	it("load func", () => {
