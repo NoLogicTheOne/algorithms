@@ -5,7 +5,8 @@
 // const sortFunc = require("./MergeSort.js")
 // const sortFunc = require("./BubbleSort.js")
 // const sortFunc = require("./SelectionSort.js")
-const sortFunc = require("./QwickSort.js")
+// const sortFunc = require("./QwickSort.js")
+const sortFunc = require("./CountSort.js")
 
 describe("correct loaded", () => {
 	it("load func", () => {
@@ -36,7 +37,7 @@ describe("random tests", () => {
 	const getArrOfValues = () => {
 		let arr = [], i = random(50, 100)
 		while(i--){
-			arr.push(random(-10000, 10000))
+			arr.push(random(-100000, 100000))
 		}
 		return arr
 	}
