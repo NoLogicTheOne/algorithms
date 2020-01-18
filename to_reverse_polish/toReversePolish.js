@@ -1,16 +1,64 @@
 const isNumber = variable => +variable === +variable
 
 const toReversePolish = function(str) {
+	let wagons = buildWagons(str)
+	//wagons are an abstraction proposed by E.W. Dijkstra to denote the entities of an expression
 	let stack = []
-	let vagons = buildVagons(str)
+	const checkStackTop = () => stack[stack.length - 1]
+	let result = []
+	let priority = {
+		")": 4, 
+		"*": 3,
+		"/": 3,
+		"+": 2,
+		"-": 2,
+		"(": 1
+	}
 
-	return str
+	for(let i = 0, len = wagons.length; i < len; i++){	
+		let wagon = wagons[i]
+		
+		if(isNumber(wagon)){
+			result.push(wagon)
+			continue
+		}
+
+		if(wagon == "("){
+			stack.push("(")
+		}
+		if(wagon == ")"){
+			while(checkStackTop() !== "("){
+				result.push(stack.pop())
+			}
+			result = result.filter(c => !(/\(|\)/.test(c)))
+		}
+
+		let symPriority = priority[wagon]
+
+		if(symPriority !== undefined){
+			if((checkStackTop() === undefined) || (priority[checkStackTop()] < symPriority)){
+				stack.push(wagon)
+				continue
+			} 
+			do {
+				result.push(stack.pop())
+			} while(priority[checkStackTop()] >= symPriority)
+			stack.push(wagon)
+		}
+	}
+	
+	while(stack[0] !== undefined){
+		result.push(stack.pop()) 
+	}
+
+	return result.join(",")
 }
 
-function buildVagons(str) {
+
+function buildWagons(str) {
 	let temp = ""
 	
-	return str.split("").reduce((a, c, i, arr) => {
+	return str.replace(/\s/g,"").split("").reduce((a, c, i, arr) => {
 		if(!isNumber(c) || !isNumber(arr[i + 1])) {
 			let res = [...a, temp + c]
 			temp = ""
@@ -23,5 +71,5 @@ function buildVagons(str) {
 
 module.exports = {
 	toReversePolish,
-	buildVagons
+	buildWagons
 }
