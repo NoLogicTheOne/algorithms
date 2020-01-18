@@ -28,7 +28,7 @@ describe("sample tests", () => {
 		expect(sortFunc([-47,6,29,-55,-6])).toEqual([-55,-47,-6,6,29])
 	})
 	it("similar case", ()=> {
-		expect(sortFunc([-92,-14,-14])).toEqual([-92,-14,-14])
+		expect(sortFunc([-92,-14,-14, -100])).toEqual([-100, -92,-14,-14])
 	})
 })
 
