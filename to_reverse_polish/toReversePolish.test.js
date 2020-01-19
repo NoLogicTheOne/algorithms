@@ -35,6 +35,9 @@ describe("buildWagons", () => {
 	it("multi numbers", () => {
 		expect(buildWagons("55+777")).toEqual(["55","+","777"])
 	})
+	it("work with sqrt", () => {
+		expect(buildWagons("55+sqrt777")).toEqual(["55","+","V","777"])
+	})
 	it("multi numbers with brackets and spaces", () => {
 		expect(buildWagons("55 + (777 - 324) / 5")).toEqual(["55","+","(","777","-","324",")","/","5"])
 	})
@@ -42,7 +45,7 @@ describe("buildWagons", () => {
 
 describe("toReversePolish", () => {
 	it("sample test", () => {
-		expect(toReversePolish("5+7")).toEqual("5,7,+")
+		expect(toReversePolish("5+sqrt7")).toEqual("5,7,sqrt,+")
 	})
 	it("test with multiply", () => {
 		expect(toReversePolish("5+7*2")).toEqual("5,7,2,*,+")
@@ -50,8 +53,8 @@ describe("toReversePolish", () => {
 	it("test with dividers", () => {
 		expect(toReversePolish("5/7+2")).toEqual("5,7,/,2,+")
 	})
-	it("test with brackets", () => {
-		expect(toReversePolish("5*(7+4)")).toEqual("5,7,4,+,*")
+	it("test with brackets 5*sqrt(7+4)", () => {
+		expect(toReversePolish("5*sqrt(7+4)")).toEqual("5,7,4,+,sqrt,*")
 	})
 	it("combo test", () => {
 		let variation = "555 *  ((74 +4) * 5)/ 15"
@@ -59,7 +62,7 @@ describe("toReversePolish", () => {
 		let myResult = reversePolish(toReversePolish(variation))
 		expect(myResult).toEqual(result)
 	})
-	it("catching break breackers", () => {
+	it("catching break breackets", () => {
 		let badCall = () => {
 			toReversePolish("555 *  ((74 +4) * 5)/ 15)")
 		}

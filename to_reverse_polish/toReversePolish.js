@@ -8,12 +8,12 @@ const toReversePolish = function(str) {
 	
 	let result = []
 	let priority = {
-		")": 4,
+		"V": 4,
 		"*": 3,
 		"/": 3,
 		"+": 2,
 		"-": 2,
-		"(": 1
+		"(": 0
 	}
 
 	for(let i = 0, len = wagons.length; i < len; i++){	
@@ -64,23 +64,26 @@ const toReversePolish = function(str) {
 		result.push(stack.pop()) 
 	}
 
-	return result.join(",")
+	return result.join(",").replace(/V/g, "sqrt")
 }
 
 
 function buildWagons(str) {
 	let temp = ""
 	
-	return str.replace(/\s/g,"").split("").reduce((a, c, i, arr) => {
-		if(!isNumber(c) || !isNumber(arr[i + 1])) {
-			let res = [...a, temp + c]
-			// some nubers has more than one digit
-			temp = ""
-			return res
-		}		
-		temp += c
-		return a
-	}, [])
+	return str.replace(/\s/g,"")
+		.replace(/sqrt/g,"V") // V is like sqrt-symbol
+		.split("")
+		.reduce((a, c, i, arr) => {
+			if(!isNumber(c) || !isNumber(arr[i + 1])) {
+				let res = [...a, temp + c]
+				// some nubers has more than one digit
+				temp = ""
+				return res
+			}		
+			temp += c
+			return a
+		}, [])
 }
 
 module.exports = {
