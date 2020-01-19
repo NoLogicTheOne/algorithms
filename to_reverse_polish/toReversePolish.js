@@ -25,12 +25,16 @@ const toReversePolish = function(str) {
 
 		if(wagon == "("){
 			stack.push("(")
+			continue
 		}
+
 		if(wagon == ")"){
 			while(checkStackTop() !== "("){
 				result.push(stack.pop())
 			}
-			result = result.filter(c => !(/\(|\)/.test(c)))
+			// we have to pop '('
+			stack.pop()
+			continue
 		}
 
 		let symPriority = priority[wagon]
