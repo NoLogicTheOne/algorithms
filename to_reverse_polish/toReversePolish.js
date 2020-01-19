@@ -5,9 +5,10 @@ const toReversePolish = function(str) {
 	//wagons are an abstraction proposed by E.W. Dijkstra to denote the entities of an expression
 	let stack = []
 	const checkStackTop = () => stack[stack.length - 1]
+	
 	let result = []
 	let priority = {
-		")": 4, 
+		")": 4,
 		"*": 3,
 		"/": 3,
 		"+": 2,
@@ -31,6 +32,9 @@ const toReversePolish = function(str) {
 		if(wagon == ")"){
 			while(checkStackTop() !== "("){
 				result.push(stack.pop())
+				if(checkStackTop() === undefined){
+					throw new Error("incorrect brackets expression")
+				}
 			}
 			// we have to pop '('
 			stack.pop()
@@ -43,12 +47,17 @@ const toReversePolish = function(str) {
 			if((checkStackTop() === undefined) || (priority[checkStackTop()] < symPriority)){
 				stack.push(wagon)
 				continue
-			} 
+			}
+			
 			do {
 				result.push(stack.pop())
 			} while(priority[checkStackTop()] >= symPriority)
+			
 			stack.push(wagon)
+			continue
 		}
+
+		throw new Error("given unexpected symbol")
 	}
 	
 	while(stack[0] !== undefined){
@@ -65,6 +74,7 @@ function buildWagons(str) {
 	return str.replace(/\s/g,"").split("").reduce((a, c, i, arr) => {
 		if(!isNumber(c) || !isNumber(arr[i + 1])) {
 			let res = [...a, temp + c]
+			// some nubers has more than one digit
 			temp = ""
 			return res
 		}		

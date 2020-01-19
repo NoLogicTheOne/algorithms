@@ -54,9 +54,23 @@ describe("toReversePolish", () => {
 		expect(toReversePolish("5*(7+4)")).toEqual("5,7,4,+,*")
 	})
 	it("combo test", () => {
-		let variation = "555 *  ((74+4) * 5) / 15"
+		let variation = "555 *  ((74 +4) * 5)/ 15"
 		let result = eval(variation)
 		let myResult = reversePolish(toReversePolish(variation))
 		expect(myResult).toEqual(result)
+	})
+	it("catching break breackers", () => {
+		let badCall = () => {
+			toReversePolish("555 *  ((74 +4) * 5)/ 15)")
+		}
+
+		expect(badCall).toThrow('brackets')
+	})
+	it("catching unexpected symbols", () => {
+		let badCall = () => {
+			toReversePolish("555 *  ((74 +4d) * 5)/ 15")
+		}
+
+		expect(badCall).toThrow('unexpected symbol')
 	})
 })
