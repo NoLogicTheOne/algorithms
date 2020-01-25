@@ -33,3 +33,18 @@ Function supports the following set of operators:
 	* sqrt
 
 Returns the result of the expression or Error if the expression is incorrect or contains unregistred caracters
+
+### toReversePolish
+directory name: to_reverse_polish
+
+The function takes an equation string and converts it to the reverse Polish notation
+
+This is magic, because now the equation of the form `23 + (46 - sqrt(6 * 5 + 12))` and its like are translated into a form for easy calculation!
+
+### meatMiddle
+directory name: meatmiddle
+
+This is an implementation of the algorithm for finding triplets with a sum less than the specified one
+
+thanks to an algorithm called meat middle, the time complexity `O(logn*n^2)` is achieved
+
