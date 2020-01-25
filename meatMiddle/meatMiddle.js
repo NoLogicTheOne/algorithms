@@ -4,8 +4,9 @@ function meatMiddle(t, array){
 	let median = t / 3
 
 	array.sort((a,b) => a - b)
+	array = array.map(c => +c)
 
-	for(let i1 = 0; i1 <= median; i++){
+	for(let i1 = 0; i1 <= median; i1++){
 		let i2 = i1 + 1
 		let i3 = len - 1
 
@@ -22,3 +23,4 @@ function meatMiddle(t, array){
 	return result
 }
 
+module.exports = meatMiddle
