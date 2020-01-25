@@ -57,8 +57,8 @@ describe("toReversePolish", () => {
 		expect(toReversePolish("5*sqrt(7+4)")).toEqual("5,7,4,+,sqrt,*")
 	})
 	it("combo test", () => {
-		let variation = "555 *  ((74 +4) * 5)/ 15"
-		let result = eval(variation)
+		let variation = "555 *  (sqrt(47 + 2) * 5)/ 15"
+		let result = 1295
 		let myResult = reversePolish(toReversePolish(variation))
 		expect(myResult).toEqual(result)
 	})
